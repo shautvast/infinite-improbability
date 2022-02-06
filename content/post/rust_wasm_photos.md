@@ -245,7 +245,7 @@ Make sure to have all the imports (```use``` statements)  right, or this will no
 
 **Final thoughts**
 * I only tested it in firefox, no guarantees.
-* OMG, I changed my code while writing this post. A definite no-no. I hope the code works. Otherwise check the repo...sorry.
+* OMG, I changed my code while writing this post. A definite no-no. I hope the code works. Otherwise check the [repo](https://github.com/shautvast/dragndrop_wasm_yew) ...sorry.
 * Actually that is kinda interesting: while explaining the code, I thought, "well that (code) doesn't really make sense", and I found a better solution.
 * Yew allows for other ways to handle events for instance. I ended up with what I found most elegant.
 * There's more to yew. Read the docs!
