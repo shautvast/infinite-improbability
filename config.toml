@@ -1,0 +1,16 @@
+baseurl = "/"
+title = "Infinite Improbability"
+theme = "beautifulhugo"
+
+[Params]
+    mainSections = ["post"]
+    intro = true
+    headline = "Infinite Improbability"
+    description = "thoughts on computing"
+    github = "https://github.com/shautvast"
+    opengraph = true
+    shareTwitter = true
+    dateFormat = "Mon, Jan 2, 2006"
+
+[Permalinks]
+    post = "/:filename/"
