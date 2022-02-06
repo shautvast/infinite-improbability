@@ -67,7 +67,7 @@ Start simple. Improve later
 
 Maybe the pasta makers at Felicetti also started with a plain staple pasta that did not stand out from anything in the supermarket. Their factory and lab are immensely impressive but it started a hundred years ago when the great grandfater sold his company and bought a small pasta factory. 
 
-Pasta is a commodity. But achieving _this_ product, sold at _this_ price (3 euros for 500 g, which is expensive, but not extremely so) ensures that the whole supply chain gets the correct price. 'from the seed to the land, to the farmer, to the miller, the pasta producer and the owner of the store.'
+Pasta is a commodity. But achieving _this_ product, sold at _this_ price (3 euros for 500 g, which is expensive, but not extremely so) ensures that the whole supply chain gets the correct price. 'from the seed to the land, to the farmer, to the miller, the pasta producer and the owner of the store.' (Riccardo Felicetti).
 
 What he says next (3:10) is nothing less than mind blowing:
 
