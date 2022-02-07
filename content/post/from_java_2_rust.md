@@ -46,7 +46,7 @@ Next `()`, like in a lot of languages means: put any parameters here. Curly brac
 `let` defines a variable, in ths case `name`. Some things to say about this:
 For one: rust is _strongly typed_, so we could also say `let name: String = String::from("...")` but rust infers the type as much as possible (and that is much more than let's say java does). 
 
-Actually `let` does more than declare and assign, it determines ownership. More on that later. 
+Actually `let` does more than declare and assign, it establishes ownership. More on that later. 
 
 One last thing to mention here: 
 this is allowed:
