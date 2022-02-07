@@ -113,7 +113,11 @@ Weird, right? Well remember that by default nothing is mutable. And that things 
 
 But be aware: What do you think would happen if you'd add 
 `get_hello(x);`?
-It would not compile. Ownership has passed from `x` to `y`. So there is never a situation in which a value is mutable and immutable at the same time. The compiler prevents this. And it prevents a **lot** of things. The rust compiler is quite famous for handing you friendly reminders that your code has issues, even suggesting fixes...
+It would not compile. Ownership has passed from `x` to `y`. Now, sit back and just let this sink into your mind...
+
+Still here? After ```y=x```, ```x``` can no longer be accessed!
+
+So in this case, there is never a situation in which a value is mutable and immutable at the same time. The compiler won't have it. This way it prevents a **lot** of bugs. The rust compiler is quite famous for handing you friendly reminders that your code has issues, even suggesting the fix...
 
 Next line:
 {{<highlight rust "linenos=table,linenostart=12">}}
@@ -172,3 +176,6 @@ I saved the best for last here, but I have already given some hints as to what t
 The latter is the reason that I could not call `get_hello` *twice* with `name` as the argument. At the first call, my ownership is passed on. The function, being the owner, can do with as it sees fit, but at the end of the function, the the value is dropped and you can no longer use it. Once you have updated your mental models with this knowledge, your life as a rust developer has become a little easier.
 
 Astute readers may have noticed the `&mut` before `self` in the function declaration for push_str. This is what a unique reference looks like. So you get a mutable reference to self, which means that you can mutate `self` (here append some text to the string), but you have not become the owner. The mutable reference to self goes out out scope once the method ends and the original owner can carry on using it. This is true for any `&mut`.
+
+If you have made it this far, I recommend you start reading [the book](https://doc.rust-lang.org/book/)
+and install [rustup](https://www.rust-lang.org/tools/install). Enjoy!
