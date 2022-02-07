@@ -1,7 +1,7 @@
 ---
-title: "Rust for Java developers, part 1"
+title: "Rust for Java developers, Introduction"
 date: 2021-12-17T13:07:49+01:00
-draft: true
+draft: false
 ---
 ![rusty bridge](/img/christopher-burns--mUBrTfsu0A-unsplash.jpg)
 
@@ -16,8 +16,25 @@ And java powers much of the web. Rust, while being regarded as a _systems_ langu
 **tl;dr**
 Do not think 'Rust is just a new language, I can map what I already know onto some new keywords'. Rust is different. But taking the effort will pay off.
 
+In this post you will see some syntax and get a feel for how rust differs from other languages because of its implementation of _ownership_.
+
 Imagine a language in which duplicating a valid line of code slaps you in the face with a compilation error:
-{{< gist shautvast 1e402ea018b1a3209d7e4b1794e93250 >}}
+{{<highlight rust "linenos=table">}}
+fn main() {
+    let name = String::from("Bob");
+    let msg = get_hello(name);
+    println!("{}", msg);
+
+    // let msg2 = get_hello(name); -- ERROR Use of moved value
+    // println!("{}", msg2);
+}
+
+fn get_hello(name: String) -> String{
+    let mut text = "Hello ".to_owned();
+    text.push_str(&name);
+    return text;
+}
+{{</highlight>}}
 
 __line 6 is a copy of line 3. The first compiles but the second does not. WTF?__
 
@@ -33,10 +50,16 @@ Actually `let` does more than declare and assign, it determines ownership. More 
 
 One last thing to mention here: 
 this is allowed:
-{{< gist shautvast de41deb52f42ecba42ea14408c1f49fd >}}
+{{<highlight rust>}}
+let name;
+name = String::from("<your name here>");
+let msg = get_hello(name);
+{{</highlight>}}
 and this is not:
-
-{{< gist shautvast 446e584ee590ed1c2014d4b6bbd48063 >}}
+{{<highlight rust>}}
+let name;
+// let msg = get_hello(name); -- ERROR Use of possibly uninitialized variable 
+{{</highlight>}}
 
 because no value is actually assigned to `name`. In java we could cheat and assign `null` to name, but rust won't have any of that. 
 
@@ -57,31 +80,34 @@ About strings: There is String and there is &str (pronounced string-slice). Java
 So rust String is mutable and &str is not. The latter is also a (shared) reference. This is important. It means I have **borrowed** something, I can use it, but I am not allowed to change it and I am certainly not the **owner**. More on ownership later...
 
 On to the next two lines. 
-```
+{{<highlight rust "linenos=table,linenostart=3">}}
 let msg = get_hello(name);
 println!("{}", msg);
-```
+{{</highlight>}}
+
 Nothing too fancy: we call a function and print the result. Rust has easy string interpolation using `{}` for a value that you want to insert into a string. The print! statement ends with an exclamation mark and this signifies that you're dealing with a *macro*. So it compiles to something completely different, but who cares about that?
 
 Next: 
-
-`fn get_hello(name: String) -> String {...`
-
+{{<highlight rust "linenos=table,linenostart=10">}}
+fn get_hello(name: String) -> String {
+{{</highlight>}}
 This function actually has a return value which unlike java and C is at the end of the declaration (following the arrow```->```). I find this more intuitive.
 
-Next we again create a String, concatenate the input argument and return the result. Nothing too fancy, but...
+{{<highlight rust "linenos=table,linenostart=11">}}
+let mut text = "Hello ".to_owned();
+{{</highlight>}}
 
-`let mut some_string = String::from("Hello ");`
+Here we create a String, concatenate the input argument and return the result. Make sure the test variable is `mut`. The method `to_owned` creates a copy of a str slice in the form of an owned String.
 
-The `mut` keyword indicates that we are actually allowed to change the the value of `some_string`. I mentioned earlier that String is mutable, but if you actually want to mutate it, you have to add `mut`. And: **types aren't mutable (or not), bindings are!**
+The `mut` keyword indicates that we are actually allowed to change the the value of `some_string`. I mentioned earlier that String is mutable, but if you actually want to mutate it, you have to add `mut`. And: **values aren't mutable (or not), bindings are!**
 
 So:
-```
+{{<highlight rust>}}
 let x = String::from("x");
 //x.push_str("NO!"); // compilation error, x is not mutable
 let mut y = x;
 y.push_str("YES!"); // but this compiles!
-```
+{{</highlight>}}
 
 Weird, right? Well remember that by default nothing is mutable. And that things can magically 'become' mutable through `mut`. 
 
@@ -90,27 +116,37 @@ But be aware: What do you think would happen if you'd add
 It would not compile. Ownership has passed from `x` to `y`. So there is never a situation in which a value is mutable and immutable at the same time. The compiler prevents this. And it prevents a **lot** of things. The rust compiler is quite famous for handing you friendly reminders that your code has issues, even suggesting fixes...
 
 Next line:
-`some_string.push_str(&name);`
+{{<highlight rust "linenos=table,linenostart=12">}}
+    text.push_str(&name);
+{{</highlight>}}
 
 What's interesting here is that we pass a reference to `name`, using the ampersand `&`. A reference to a String is by definition a string-slice. So the signature for push_str is:
 
-`pub fn push_str(&mut self, string: &str)`
+{{<highlight rust>}}
+pub fn push_str(&mut self, string: &str)`
+{{</highlight>}}
 
-Oh and this is interesting: the `self` keyword is sort of like `this` in java, but not quite. See `this` is the reference to the object you act on in java. In rust, like python, if we have a function on an object (also called a method), the first argument is always `self`. We have objects in rust, but they're called `struct`, and they're like classes and objects really, but there's no inheritance. Remember 'favour composition over inheritance'? 
+Oh and this is interesting: the `self` keyword is sort of like `this` in java, but not quite. See `this` is the reference to the object you act on in java. In rust, like python, if we have a function on an object (also called a method), the first argument is always `self`. 
+
+There are objects in rust, but they're called `struct`, and they are similar in some respects, but there's no inheritance. Remember: _favour composition over inheritance_.
 
 Okay, one more line to go:
-
-`return some_string;`
+{{<highlight rust "linenos=table,linenostart=13">}}
+return text;
+{{</highlight>}}
 
 You might have noticed that this could have been java code, except that rust prefers _snake_case_ for local variables. The compiler actually enforces this. You can turn it off, but that would be rude. 
 The funny thing about this line is that in practice it will always be written like this:
 
-`some_string`
+{{<highlight rust "linenos=table,linenostart=13">}}
+text
+{{</highlight>}}
 
 `return` is optional (handy for early returns), but it needs the semicolon. It's shorter without them, so why not?
 
 Be aware that is more powerful than it seems at first glance. The last line(s) of anything, provided that is does not end with `;` is always evaluated as an expression and returned to the caller. So it could have been a compound `match` expression (fetaured in a later blog) or a simple `if` (which is also an expression!):
-```
+
+{{<highlight rust>}}
 fn foo(bar: bool) -> u32{
     if bar {
         1
@@ -118,7 +154,8 @@ fn foo(bar: bool) -> u32{
         0
     }
 }
-```
+{{</highlight>}}
+
 This is so much cleaner than anything else!
 
 __ownership__
