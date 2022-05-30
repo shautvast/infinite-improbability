@@ -1,6 +1,7 @@
 ---
 title: "Get Enterprisey with Rust"
 date: 2022-05-23T17:33:09+02:00
+author: Sander Hautvast
 draft: false
 ---
 Why not use the coolest language out there to do the things you probably still use Java for? Rust is marketed as a 'systems language', whatever that is. It looks to me like a general purpose language, 'turing complete' and whatnot. There are plenty crates for anything web related. There's tools for http servers, database connections, logging. We may also want security, monitoring, telemetry, cloud deployment. Do we want end-to-end testing? Sure. Openapi? Love it. 

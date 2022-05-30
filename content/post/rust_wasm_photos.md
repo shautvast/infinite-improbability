@@ -2,6 +2,7 @@
 title: "Let's create an app in webassembly"
 date: 2022-02-05T20:11:08+01:00
 draft: false
+author: Sander Hautvast
 ---
 ![soup assembly](/img/markus-winkler-08aic3qPcag-unsplash.jpg)
 Web assembly is cool and new and it lacks nice how-to's for tasks that are by now quite mundane for most web developers. So let's get started using [yew](https://yew.rs/). 
@@ -176,7 +177,7 @@ So DropImage is now a _Component_, much the same way as in for instance _Angular
 
 There are some differences with regular html to be aware of. All _text_ must be surrounded by curly braces {}. A constant string in quotes will simply be turned into the text html child, but you can output any component value, eg: ```{self.value}```
 
-Note that two event handlers, ```ondragover``` and ```ondrop``` are registered in the drop-zone div. What does ```{link.callback(|e| Msg::Dragged(e))}``` mean? It sends a message called Msg::Dragged with a payload that is the raised html event (e). The component now be able the handle this message. For this you need:
+Note that two event handlers, ```ondragover``` and ```ondrop``` are registered in the drop-zone div. What does ```{link.callback(|e| Msg::Dragged(e))}``` mean? It sends a message called Msg::Dragged with a payload that is the raised html event (e). The component is now be able the handle this message. For this you need:
 
 ```update``` is called by the framework and it receives an instance of the Msg enum and it will respond by choosing appropriate action. This could mean update the internal component state or the view directly. I fact I doubt if the latter is really what you would want. In fact we could have defined the _images_ div as follows
 {{<highlight html>}}

@@ -2,6 +2,7 @@
 title: "To Stored Procedure or Not"
 date: 2021-12-07T20:32:49+01:00
 draft: false
+author: Sander Hautvast
 ---
 ### Or: My personal Object-Relational Mapping [Vietnam war story](https://blogs.tedneward.com/post/the-vietnam-of-computer-science/)
 

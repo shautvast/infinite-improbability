@@ -1,6 +1,7 @@
 ---
 title: "Get Enterprisey with Rust, part2: input validation"
 date: 2022-05-30T17:50:11+02:00
+author: Sander Hautvast
 draft: false
 ---
 Input validation is next on the list of enterprisey features (see also [part1](/enterprisey)). This will be the only new feature to add in this post because we need to add quite a but of boilerplate (sadly) to get it working.

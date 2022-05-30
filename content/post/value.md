@@ -2,6 +2,7 @@
 title: "On the value of software and pasta"
 date: 2022-01-17T10:29:29+01:00
 draft: false
+author: Sander Hautvast
 ---
 ![cash](/img/pradamas-gifarry-bVfMuhN9w6I-unsplash.jpg)
 This week some things 'happened' to me that made me want to read up on the grander scheme of things, meaning economic value, in particular that of software. I'll just list them briefly

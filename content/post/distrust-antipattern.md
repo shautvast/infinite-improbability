@@ -2,6 +2,7 @@
 title: "Distrust Antipattern"
 date: 2022-01-28T10:47:56+01:00
 draft: true
+author: Sander Hautvast
 ---
 
 __can you trust your own team mates?__

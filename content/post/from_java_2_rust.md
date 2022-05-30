@@ -2,6 +2,7 @@
 title: "Rust for Java developers, Introduction"
 date: 2021-12-17T13:07:49+01:00
 draft: false
+author: Sander Hautvast
 ---
 ![rusty bridge](/img/christopher-burns--mUBrTfsu0A-unsplash.jpg)
 
