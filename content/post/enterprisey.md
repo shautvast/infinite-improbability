@@ -8,7 +8,7 @@ Why not use the coolest language out there to do the things you probably still u
 
 That said, a framework like spring-boot is pretty mature. It may just be a hassle trying to accomplish those nice features...
 
-### Challenge accepted...
+_Challenge accepted..._
 
 Start a new project 
 {{<highlight bash>}}
@@ -193,7 +193,7 @@ async fn get_blogs(Extension(pool): Extension<PgPool>) -> Result<Json<Vec<BlogEn
 {{</highlight>}}
 
 * async function
-* Not the peculiar syntax ```Extension(pool): Extension<PgPool>```. This is pattern matching on function arguments. The actual argument will be passed by Axum. We only need the pool and this way we can extract it from the Extension.
+* Note the peculiar syntax ```Extension(pool): Extension<PgPool>```. This is pattern matching on function arguments. The actual argument will be passed by Axum. We only need the pool and this way we can extract it from the Extension.
 * For Json you need to wrap the result ```Vec<BlogEntry>``` in a ```axum::Json``` struct. 
 * ```map_err``` is called with function argument ```internal_error```. This function maps any runtime error to http code 500.
 

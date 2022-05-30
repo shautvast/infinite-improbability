@@ -15,7 +15,7 @@ let app = Router::new()
         .layer(Extension(pool));
 {{</highlight>}}
 
-And this is the ```add_blog`` function:
+And this is the ```add_blog``` function:
 
 {{<highlight rust "linenos=table">}}
 async fn add_blog(Extension(pool): Extension<PgPool>, ValidatedJson(blog): ValidatedJson<BlogEntry>) -> Result<Json<String>, (StatusCode, String)> {
