@@ -1,10 +1,10 @@
 ---
-title: "Get Enterprisey with Rust, part2: input validation"
+title: "Get Enterprisey with Rust part 2 - Input Validation"
 date: 2022-05-30T17:50:11+02:00
 author: Sander Hautvast
 draft: false
 ---
-Input validation is next on the list of enterprisey features (see also [part1](/enterprisey)). This will be the only new feature to add in this post because we need to add quite a but of boilerplate (sadly) to get it working.
+Input validation is next on the list of enterprisey features (see also [part 1](/enterprisey)). This will be the only new feature to add in this post because we need to add quite a but of boilerplate (sadly) to get it working.
 
 First we need to add a service that will respond to a post request on the same url. 
 
@@ -121,7 +121,9 @@ http-body = "0.4.3"
 async-trait = "0.1"
 ```
 
-The code that we just added basically makes sure the post request passes through the validator. If we now execute
+The good news is that this code is generic for your whole application. So I guess you can put it in a separate file and largely forget about it.
+
+So now If we now execute:
 {{<highlight bash "linenos=table">}}
 curl http://localhost:3000/entries -X POST -d '{"created":"2022-05-30T17:09:00.000000Z", "title":"aha", "author":"a", "text": "2"}' -v -H "Content-Type:application/json"
 {{</highlight>}}
@@ -134,3 +136,8 @@ Input validation error: [ValidationError(ValidationErrors({
     "text": Field([ValidationError { code: "length", message: Some("text length must be at least 10"), params: {"value": String("2"),   "min": Number(10)} }]), 
     "title": Field([ValidationError { code: "length", message: Some("Title length must be between 10 and 100"), params: {"max": Number(100), "value": String("aha"), "min": Number(10)} }])}))]%       
 {{</highlight>}}
+
+And voila!
+
+### Final remark
+Check out the [crate documentation](https://docs.rs/validator/0.15.0/validator/) for all available checks. Like in javax.validation you can also define completely custom ones.
