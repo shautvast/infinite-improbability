@@ -5,7 +5,7 @@ draft: false
 ---
 This is the third installment in our series about dealing with enterprisey needs using rust. 
 * [part 1](/enterprisey) was about the initial setup with axum and postgres, logging and dates.
-* [part 2](/enterprisey) was devoted to input validation on incoming Json objects.
+* [part 2](/enterprisey2) was devoted to input validation on incoming Json objects.
 
 ### Reading environment variables
 
